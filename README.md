@@ -2,7 +2,7 @@
 
 ## Anggota dan peran
 | Nama | NIM | Peran |
-| Septyana Dw Rahmawaty | 125103024 | B. Sensor dan Firmware |
+| Septyana Dwi Rahmawaty | 125103024 | B. Sensor dan Firmware |
 | Imelda Cikal Pratiwi | 125103023 | C. Platform dan Akses Internet |
 | Fatihaturrohmah | 125103007 | D. Data dan Dashboard |
 | Farrell Alvaro | 125103011 | A. Network dan RPI |

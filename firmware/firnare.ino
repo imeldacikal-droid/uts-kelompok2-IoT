@@ -1,6 +1,7 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <DHT.h>
+#include "secrets.h"
 
 #define DHTPIN 4
 #define DHTTYPE DHT22

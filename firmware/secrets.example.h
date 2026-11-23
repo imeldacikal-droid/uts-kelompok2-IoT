@@ -1,15 +1,24 @@
 #ifndef SECRETS_H
 #define SECRETS_H
 
-// Pengaturan Wi-Fi
-const char* WIFI_SSID     = "NAMA_WIFI_KAMU";
-const char* WIFI_PASSWORD = "PASSWORD_WIFI_KAMU";
+// Pengaturan Wi-Fi & MQTT Server (SESUAIKAN DENGAN HOTSPOT HP & IP LAPTOP BARU)
+const char* ssid        = "paramadina_cikarang";
+const char* password    = "cikarang";
+const char* mqtt_server = "192.168.xx.xx"; 
 
-// Pengaturan Broker MQTT (Raspberry Pi)
-const char* MQTT_SERVER   = "192.168.1.XXX";
-const int   MQTT_PORT     = 1883;
-const char* MQTT_USER     = "USERNAME_MQTT";
-const char* MQTT_PASSWORD = "PASSWORD_MQTT";
-const char* MQTT_TOPIC    = "iot/kel2/sensor";
+// --- TAMBAHAN KONFIGURASI STATIC IP ESP32 ---
+// Pastikan 3 angka depan (192, 168, 43) sama dengan jaringan Hotspot HP kamu
+IPAddress local_IP(192, 168, xx, xxx);  // IP tetap yang diinginkan untuk ESP32 (angka terakhir bebas 2-254 asal tidak bentrok)
+IPAddress gateway(192, 168, xx, x);   // IP Gateway (dari remote)
+IPAddress subnet(255, 255, 255, 0);     // Subnet mask standar
+IPAddress primaryDNS(8, 8, 8, 8);       // DNS Google (opsional)
+IPAddress secondaryDNS(8, 8, 4, 4);     // DNS Google sekunder (opsional)
+// --------------------------------------------
+
+// 2. Kredensial MQTT
+const int   mqtt_port   = 1883;
+const char* mqtt_user   = "user_mgtt";
+const char* mqtt_pass   = "password_mqtt";
+const char* mqtt_topic  = "iot/kel2/sensor";
 
 #endif

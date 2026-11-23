@@ -35,7 +35,7 @@
 | 1. RPI ke Internet | | Nov 2026 |
 | 2. Sensor ke RPI || Nov 2026 |
 | 3a. Broker MQTT | | Nov 2026 |
-| 3b. Akses Internet | Nov 2026 |
+| 3b. Akses Internet | | Nov 2026 |
 | 4. Basisdata dan Dashboard | | Nov 2026 |
 
 ## Akses publik

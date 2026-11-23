@@ -36,31 +36,45 @@ void handleRoot() {
 
 void setup_wifi() {
   delay(10);
-  
-  // Menerapkan konfigurasi IP Statis sebelum WiFi.begin()
-  if (!WiFi.config(local_IP, gateway, subnet, primaryDNS)) {
-    // Jika gagal konfigurasi static IP, tetap lanjut dengan DHCP
-  }
+  Serial.println();
+  Serial.print("Menghubungkan ke Wi-Fi: ");
+  Serial.println(ssid);
 
   WiFi.mode(WIFI_STA);
+
+  // Terapkan konfigurasi IP Statis sebelum WiFi.begin()
+  if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) {
+    Serial.println("Gagal mengkonfigurasi Static IP!");
+  }
+
   WiFi.begin(ssid, password);
 
-  // Tunggu hingga Wi-Fi terhubung (tanpa bergantung pada Serial Monitor)
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
+    Serial.print(".");
   }
+
+  Serial.println("\nWi-Fi berhasil terhubung!");
+  Serial.print("Alamat IP Statis ESP32 (Buka di browser): http://");
+  Serial.println(WiFi.localIP());
 }
 
 void reconnect() {
-  // Coba sambungkan ke MQTT tanpa memblokir Web Server terlalu lama
   if (!client.connected()) {
+    Serial.print("Mencoba konek ke MQTT Broker...");
     String clientId = "ESP32_Kel2_" + String(random(0xffff), HEX);
-    client.connect(clientId.c_str(), mqtt_user, mqtt_pass);
+    
+    if (client.connect(clientId.c_str(), mqtt_user, mqtt_pass)) {
+      Serial.println("BERHASIL terhubung ke MQTT!");
+    } else {
+      Serial.print("GAGAL, kode error rc=");
+      Serial.println(client.state());
+    }
   }
 }
 
 void setup() {
-  // Pin LED bawaan ESP32 (biasanya GPIO 2) sebagai indikator nyala tanpa laptop
+  Serial.begin(115200); // Inisialisasi Serial Monitor
   pinMode(2, OUTPUT);
   digitalWrite(2, LOW);
 
@@ -73,22 +87,21 @@ void setup() {
   // Jalankan Web Server lokal di ESP32
   server.on("/", handleRoot);
   server.begin();
+  Serial.println("Web Server HTTP aktif.");
 
   client.setServer(mqtt_server, mqtt_port);
 }
 
 void loop() {
-  // Pastikan Wi-Fi tetap terhubung jika sewaktu-waktu terputus
   if (WiFi.status() != WL_CONNECTED) {
     digitalWrite(2, LOW);
+    Serial.println("Wi-Fi terputus! Menyambungkan ulang...");
     setup_wifi();
     digitalWrite(2, HIGH);
   }
 
-  // Layani permintaan akses browser ke IP ESP32
   server.handleClient();
 
-  // Kelola koneksi MQTT
   if (!client.connected()) {
     reconnect();
   }
@@ -101,15 +114,25 @@ void loop() {
     float h = dht.readHumidity();
     float t = dht.readTemperature();
 
-    if (!isnan(h) && !isnan(t)) {
-      kelembapan = h;
-      suhu = t;
+    if (isnan(h) || isnan(t)) {
+      Serial.println("Gagal membaca sensor DHT22! Cek kabel di Pin D4.");
+      return;
+    }
 
-      // Kirim ke MQTT Broker
-      if (client.connected()) {
-        String payload = "{\"suhu\":" + String(suhu, 1) + ",\"kelembapan\":" + String(kelembapan, 1) + "}";
-        client.publish(mqtt_topic, payload.c_str());
-      }
+    kelembapan = h;
+    suhu = t;
+
+    Serial.print("Suhu: ");
+    Serial.print(suhu, 1);
+    Serial.print(" °C | Kelembapan: ");
+    Serial.print(kelembapan, 1);
+    Serial.println(" %");
+
+    // Kirim ke MQTT Broker
+    if (client.connected()) {
+      String payload = "{\"suhu\":" + String(suhu, 1) + ",\"kelembapan\":" + String(kelembapan, 1) + "}";
+      client.publish(mqtt_topic, payload.c_str());
+      Serial.println("Data terkirim ke MQTT: " + payload);
     }
   }
 }

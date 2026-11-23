@@ -1,5 +1,5 @@
 #include <WiFi.h>
-#include "secrets.h"
+#include <secret.h>
 #include <PubSubClient.h>
 #include <DHT.h>
 

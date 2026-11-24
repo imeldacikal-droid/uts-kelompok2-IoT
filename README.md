@@ -13,7 +13,7 @@ Sistem pemantau suhu dan kelembapan udara dari ujung ke ujung. Sensor DHT22 pada
  
 Koordinator: [nama]. Pengaudit: A mengaudit B, B mengaudit C, C mengaudit D, D mengaudit A.
  
-## Arsitektur
+## DIAGRAM Arsitektur
  
 ```text
 +-------------------+   WiFi 2,4 GHz +--------------------------------------------------------------------+

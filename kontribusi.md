@@ -12,3 +12,4 @@
 | 2026-11-14 | Fatihaturrohmah | 125103007 | 3 jam | Laporan (PDF) & pengujian akses publik | [docs/tahap3b/halaman sign in grafana.jpeg](docs/tahap3b/halaman%20sign%20in%20grafana.jpeg), [docs/tahap3b/screenshot dari hp.46.jpeg](docs/tahap3b/screenshot%20dari%20hp.46.jpeg) |
 | 2026-11-23 | Farrell Alvaro Wielianto | 125103011 | 20 menit | Mengubah code Arduino | [firmware/](firmware/) |
 | 2026-11-24 | Fatihaturrohmah | 125103007 | 1 jam | Melengkapi dokumentasi teknis (`README.md` & `kontribusi.md`) | [README.md](README.md) |
+| 2026-11-23 | Fatihaturrohmah | 125103007 | 2 jam | Menyusun arsitektur sistem IoT & melengkapi dokumentasi teknis (`README.md`) | [README.md](README.md), [docs/](docs/) |

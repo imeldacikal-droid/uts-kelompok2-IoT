@@ -11,3 +11,4 @@
 | 2026-11-19 | Septyana Dw Rahmawaty | 125103024 | 1 jam | Tailscale Funnel untuk Grafana | [docs/tahap3b/Tailscale Funnel aktif.jpeg](docs/tahap3b/Tailscale%20Funnel%20aktif.jpeg), [docs/tahap3b/Akses Internet - Tunnel.jpeg](docs/tahap3b/Akses%20Internet%20-%20Tunnel.jpeg) |
 | 2026-11-14 | Fatihaturrohmah | 125103007 | 3 jam | Laporan (PDF) & pengujian akses publik | [docs/tahap3b/halaman sign in grafana.jpeg](docs/tahap3b/halaman%20sign%20in%20grafana.jpeg), [docs/tahap3b/screenshot dari hp.46.jpeg](docs/tahap3b/screenshot%20dari%20hp.46.jpeg) |
 | 2026-11-23 | Farrell Alvaro Wielianto | 125103011 | 20 menit | Mengubah code Arduino | [firmware/](firmware/) |
+| 2026-11-24 | Fatihaturrohmah | 125103007 | 1 jam | Melengkapi dokumentasi teknis (`README.md` & `kontribusi.md`) | [README.md](README.md) |

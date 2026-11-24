@@ -116,18 +116,17 @@ sudo cp rpi/mosquitto/kel2.conf /etc/mosquitto/conf.d/
 sudo systemctl restart mosquitto
 sudo systemctl enable mosquitto
 ```
- 
-### Tahap 3b: Tailscale Funnel
- 
+ ### Tahap 3b: Tailscale Funnel
+
 curl -fsSL [https://tailscale.com/install.sh](https://tailscale.com/install.sh) | sh
 sudo tailscale up
 # Aktifkan HTTPS Certificates dan fitur Funnel di Tailscale Admin Console
 sudo tailscale funnel --bg 3000
 sudo tailscale funnel status
 
-### Tahap 4: InfluxDB, Telegraf, Grafana
 
- # 1. InfluxDB 2.x: aktifkan layanan, lalu buka http://<IP-RPI>:8086 untuk membuat bucket 'iot' & API Token
+### Tahap 4: InfluxDB, Telegraf, Grafana
+# 1. InfluxDB 2.x: aktifkan layanan, lalu buka http://<IP-RPI>:8086 untuk membuat bucket 'iot' & API Token
 sudo systemctl enable --now influxdb
 
 # 2. Telegraf: pasang & konfigurasikan mqtt_consumer (topik iot/kel2/dht22, json) ke influxdb_v2 (bucket iot)

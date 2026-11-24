@@ -120,7 +120,7 @@ sudo systemctl enable mosquitto
 
 curl -fsSL [https://tailscale.com/install.sh](https://tailscale.com/install.sh) | sh
 sudo tailscale up
-# Aktifkan HTTPS Certificates dan fitur Funnel di Tailscale Admin Console
+#### Aktifkan HTTPS Certificates dan fitur Funnel di Tailscale Admin Console
 sudo tailscale funnel --bg 3000
 sudo tailscale funnel status
 

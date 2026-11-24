@@ -119,9 +119,22 @@ sudo systemctl enable mosquitto
  
 ### Tahap 3b: Tailscale Funnel
  
-[Sesuaikan dengan yang benar-benar dilakukan: pasang Tailscale di RPI, login, aktifkan HTTPS dan Funnel di konsol admin Tailscale, lalu jalankan `sudo tailscale funnel --bg 3000` agar Funnel tetap aktif setelah reboot.]
- 
+curl -fsSL [https://tailscale.com/install.sh](https://tailscale.com/install.sh) | sh
+sudo tailscale up
+# Aktifkan HTTPS Certificates dan fitur Funnel di Tailscale Admin Console
+sudo tailscale funnel --bg 3000
+sudo tailscale funnel status
+
 ### Tahap 4: InfluxDB, Telegraf, Grafana
- 
-[Diisi peran D: pasang InfluxDB 2.x, buat bucket `iot`, konfigurasi Telegraf (`mqtt_consumer`, format JSON), data source dan panel Grafana, serta alert suhu.]
- 
+
+ # 1. InfluxDB 2.x: aktifkan layanan, lalu buka http://<IP-RPI>:8086 untuk membuat bucket 'iot' & API Token
+sudo systemctl enable --now influxdb
+
+# 2. Telegraf: pasang & konfigurasikan mqtt_consumer (topik iot/kel2/dht22, json) ke influxdb_v2 (bucket iot)
+sudo apt install -y telegraf
+sudo cp rpi/telegraf/telegraf.conf /etc/telegraf/telegraf.conf
+sudo systemctl enable --now telegraf
+sudo systemctl restart telegraf
+
+# 3. Grafana: aktifkan layanan, buka http://<IP-RPI>:3000, atur Data Source InfluxDB (Flux) & Alert suhu
+sudo systemctl enable --now grafana-server

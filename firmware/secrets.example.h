@@ -2,8 +2,8 @@
 #define SECRETS_H
 
 // Pengaturan Wi-Fi & MQTT Server (SESUAIKAN DENGAN HOTSPOT HP & IP LAPTOP BARU)
-const char* ssid        = "paramadina_cikarang";
-const char* password    = "cikarang";
+const char* ssid        = "isi ssid kamu";
+const char* password    = "isi passworrd ssid";
 const char* mqtt_server = "192.168.xx.xx"; 
 
 // --- TAMBAHAN KONFIGURASI STATIC IP ESP32 ---
